@@ -4,7 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Date from "../components/date";
 
-// import { getSortedPostsData } from "../lib/posts";
+import { getSortedPostsData } from "../lib/posts";
 // import { useState, useEffect } from "react";
 
 // ssg, ssr
@@ -12,10 +12,11 @@ import Date from "../components/date";
 // ssg, ssr에서 api routes 시 주소는 절대 경로 표시
 
 export async function getServerSideProps() {
-  // const allPostsData = getSortedPostsData();
+  const allPostsData = getSortedPostsData();
 
-  const res = await fetch("http://localhost:3000/api/posts");
-  const { allPostsData } = await res.json();
+  // api route 요청은 client-side에서만. -> 서버 사이드에서 사용 시 중복 코드임..
+  // const res = await fetch("http://localhost:3000/api/posts");
+  // const { allPostsData } = await res.json();
 
   return {
     props: {
