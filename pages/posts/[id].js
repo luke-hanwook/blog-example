@@ -1,10 +1,11 @@
 import Date from "@components/date";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import utilStyle from "../../styles/utils.module.css";
-import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 import CodeBlock from "@components/codeblock";
 import Button from "@components/button";
+import { useRouter } from "next/router";
+import { siteTitle } from "pages/_document";
 // import dynamic from "next/dynamic";
 
 // const Button = dynamic(() => import("../../components/button"), {
@@ -47,21 +48,31 @@ const components = {
 };
 
 export default function Post({ postData }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    // <Head>
-    //   <title>{postData.title}</title>
-    // </Head>
-    <article>
-      <h1 className={utilStyle.headingXl}>{postData.title}</h1>
-      <div className={utilStyle.lightText}>
-        <Date dateString={postData.date} />
-      </div>
-      {postData.contentHtml && (
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      )}
-      {postData.mdxSource && (
-        <MDXRemote {...postData.mdxSource} components={components} />
-      )}
-    </article>
+    <>
+      <Head>
+        <title>
+          {postData.title} - {siteTitle}
+        </title>
+      </Head>
+      <article>
+        <h1 className={utilStyle.headingXl}>{postData.title}</h1>
+        <div className={utilStyle.lightText}>
+          <Date dateString={postData.date} />
+        </div>
+        {postData.contentHtml && (
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        )}
+        {postData.mdxSource && (
+          <MDXRemote {...postData.mdxSource} components={components} />
+        )}
+      </article>
+    </>
   );
 }

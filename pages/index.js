@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { siteTitle } from "../components/layout";
+import { siteTitle } from "../pages/_document";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Date from "../components/date";
