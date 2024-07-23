@@ -1,4 +1,3 @@
-import Layout from "@components/layout";
 import Date from "@components/date";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import utilStyle from "../../styles/utils.module.css";
@@ -49,22 +48,20 @@ const components = {
 
 export default function Post({ postData }) {
   return (
-    <Layout>
-      <Head>
-        <title>{postData.title}</title>
-      </Head>
-      <article>
-        <h1 className={utilStyle.headingXl}>{postData.title}</h1>
-        <div className={utilStyle.lightText}>
-          <Date dateString={postData.date} />
-        </div>
-        {postData.contentHtml && (
-          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-        )}
-        {postData.mdxSource && (
-          <MDXRemote {...postData.mdxSource} components={components} />
-        )}
-      </article>
-    </Layout>
+    // <Head>
+    //   <title>{postData.title}</title>
+    // </Head>
+    <article>
+      <h1 className={utilStyle.headingXl}>{postData.title}</h1>
+      <div className={utilStyle.lightText}>
+        <Date dateString={postData.date} />
+      </div>
+      {postData.contentHtml && (
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      )}
+      {postData.mdxSource && (
+        <MDXRemote {...postData.mdxSource} components={components} />
+      )}
+    </article>
   );
 }

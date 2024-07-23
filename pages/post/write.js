@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Layout from "../../components/layout";
 import Link from "next/link";
 
 function Write() {
@@ -41,7 +40,7 @@ function Write() {
   };
 
   return (
-    <Layout>
+    <>
       <h1>Write a post</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="ID" required ref={idRef} />
@@ -68,7 +67,7 @@ function Write() {
       {showLink && (
         <Link href={`/posts/${idRef.current.value}`}>Created Post Link</Link>
       )}
-    </Layout>
+    </>
   );
 }
 
