@@ -7,6 +7,7 @@ import Button from "@components/button";
 import { useRouter } from "next/router";
 import { siteTitle } from "pages/_document";
 import Head from "next/head";
+import { useState } from "react";
 
 // import dynamic from "next/dynamic";
 
@@ -49,6 +50,14 @@ const components = {
   CodeBlock,
 };
 
+const ErrorCompoennt = () => {
+  const [isError, setError] = useState(false);
+  if (isError) {
+    throw new Error("Error occured!");
+  }
+  return <button onClick={() => setError(true)}>Error Fire</button>;
+};
+
 export default function Post({ postData }) {
   const router = useRouter();
 
@@ -61,6 +70,7 @@ export default function Post({ postData }) {
       <Head>
         <title>{`${postData.title} - ${siteTitle}`}</title>
       </Head>
+      <ErrorCompoennt />
       <article>
         <h1 className={utilStyle.headingXl}>{postData.title}</h1>
         <div className={utilStyle.lightText}>

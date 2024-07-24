@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { format, formatDistanceToNow } from "date-fns";
 import { useReportWebVitals } from "next/web-vitals";
+import ErrorBoundary from "@components/errorBoundary";
 
 // 1. Persisting layout between page changes
 // 2. Keeping state when navigating pages
@@ -31,7 +32,9 @@ export default function App({ Component, pageProps }) {
           includeSeconds: true,
         })}
       </div>
-      <Component {...pageProps} pathname={router.pathname} />
+      <ErrorBoundary>
+        <Component {...pageProps} pathname={router.pathname} />
+      </ErrorBoundary>
     </Layout>
   );
 }
