@@ -6,6 +6,8 @@ import CodeBlock from "@components/codeblock";
 import Button from "@components/button";
 import { useRouter } from "next/router";
 import { siteTitle } from "pages/_document";
+import Head from "next/head";
+
 // import dynamic from "next/dynamic";
 
 // const Button = dynamic(() => import("../../components/button"), {
@@ -57,9 +59,7 @@ export default function Post({ postData }) {
   return (
     <>
       <Head>
-        <title>
-          {postData.title} - {siteTitle}
-        </title>
+        <title>{`${postData.title} - ${siteTitle}`}</title>
       </Head>
       <article>
         <h1 className={utilStyle.headingXl}>{postData.title}</h1>

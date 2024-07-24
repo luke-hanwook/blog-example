@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { siteTitle } from "pages/_document";
+import Head from "next/head";
 
 function Write() {
   const idRef = useRef();
@@ -43,7 +44,7 @@ function Write() {
   return (
     <>
       <Head>
-        <title>Write a post - {siteTitle}</title>
+        <title>{`Write a post - ${siteTitle}`}</title>
       </Head>
       <h1>Write a post</h1>
       <form onSubmit={handleSubmit}>
