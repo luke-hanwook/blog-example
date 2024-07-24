@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { format, formatDistanceToNow } from "date-fns";
+import { useReportWebVitals } from "next/web-vitals";
 
 // 1. Persisting layout between page changes
 // 2. Keeping state when navigating pages
@@ -13,6 +14,12 @@ import { format, formatDistanceToNow } from "date-fns";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const [visitedTime] = useState(new Date());
+
+  // measure perfomance
+  // https://nextjs.org/docs/pages/building-your-application/optimizing/analytics
+  useReportWebVitals((metric) => {
+    console.log("metric", metric);
+  });
 
   return (
     <Layout home={router.pathname === "/"}>
